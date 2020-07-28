@@ -96,11 +96,11 @@ module.exports = {
   sendPdf: async (req, res) => {
     const html = fs.readFileSync('./helpers/html-file/data.html', 'utf8');
     const options = { format: 'Letter' };
-    try {
-      await pdfcreate(html, req.body, options, pdf_stream => {
+    return pdfcreate(html, req.body, options, async pdf_stream => {
+      try {
         const form_data = new FormData();
         form_data.append("pdf", pdf_stream);
-        axios({
+        await axios({
           method: 'post',
           url: 'http://localhost:2020/upload',
           headers: {
@@ -108,15 +108,15 @@ module.exports = {
           },
           data: form_data
         })
-      })
-      res.status(200).json({
-        message: `Success send pdf`,
-      });
-    } catch (error) {
-      res.status(500).json({
-        message: error.message
-      });
-    }
+        res.status(200).json({
+          message: `Success send pdf`,
+        });
+      } catch (error) {
+        res.status(500).json({
+          message: error.message
+        });
+      }
+    })
   },
   getUUID: (req, res) => {
     const uuid = uuidv4();
