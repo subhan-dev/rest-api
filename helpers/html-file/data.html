@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <header>{{header}}</header>
+    <main>
+      <section class="table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{items.name}}</td>
+              <td>{{items.email}}</td>
+            </tr>
+            <!-- {{#each items}}
+              <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.email}}</td>
+              </tr>
+            {{/each}} -->
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
